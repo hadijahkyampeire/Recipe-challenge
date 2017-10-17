@@ -1,7 +1,8 @@
 
-# Project Title
+# Yummy recipes
 
-One Paragraph of project description goes here
+A simple app based on flask 
+##currently under development
 
 ## Getting Started
 
@@ -9,11 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-A working web browser
-```
+A working web browser and or a pc.
 
 ### Installing
 
@@ -27,15 +24,18 @@ Navigate to Index.html in the path design/UI
 open it and it should load to your web browser
 ```
 
-And repeat
+or paste this link into your web browser to see whats in store 
 
 ```
-until finished
+https://sir3n-sn.github.io/Recipe-challenge/designs/UI/index.html
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+
+As of yet thats pretty much it.
 
 ## Running the tests
+
+No tests made yet
 
 Explain how to run the automated tests for this system
 
@@ -61,27 +61,26 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
+* [Html5 and css3] - The markup and styling sheet
+* [No dependencies yet] - Dependency Management
+* 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Contributions would be highly appreciate, Help out and make a pull request, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Dhulkifli Husseiin** - *Initial work* - [Recipe-challenge](https://github.com/Recipe-challenge)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
