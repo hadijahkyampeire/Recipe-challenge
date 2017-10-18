@@ -1,6 +1,6 @@
 
 
-https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master
+[![Build status](https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master)(https://travis-ci.org/sir3n-sn/Recipe-challenge)
 
 # Yummy recipes
 
