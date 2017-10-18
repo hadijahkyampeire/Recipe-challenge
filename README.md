@@ -1,4 +1,7 @@
 
+
+https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master
+
 # Yummy recipes
 
 A simple app based on flask 
