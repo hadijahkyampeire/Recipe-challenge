@@ -8,15 +8,9 @@ install:
   - pip3 install codecov
 cache: pip3
 
-before_script:
-  - cc-test-reporter before-build
 script:
   - pytest test.py
   - coverage run test.py
 
-after_script:
-  - cc-test-reporter after-build --exit-code $?
 aftersuccess:
   - codecov
-       
-
