@@ -9,8 +9,4 @@ install:
 cache: pip3
 
 script:
-  - pytest test.py
-  - coverage run test.py
-
-aftersuccess:
-  - codecov
+  - pytest
