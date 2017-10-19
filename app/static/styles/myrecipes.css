@@ -1,0 +1,195 @@
+body,html{
+    margin:0;
+    height:100%;
+    font-family:"Lato", sans-serif;
+    font-weight:400;
+    line-height:1.8em;
+    font-size:16px;
+    color:#666;
+    }
+
+
+
+
+.pimg1{
+    position:relative;
+    opacity:0.70;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    }
+
+
+
+
+
+
+
+
+.pimg2{
+    position:relative;
+    opacity:0.70;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    }
+
+
+
+.pimg3{
+    position:relative;
+    opacity:0.70;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    }
+
+
+.pimg1{
+    background-image:url("../img/coffee.jpg");
+    min-height:100%;
+    background-size:cover;
+    background-position:center;
+    }
+
+.pimg2{
+    background-image:url("../img/meal.jpg");
+    min-height:400px;
+    background-size:cover;
+    background-position:center;
+    }
+
+.pimg3{
+    background-image:url("../img/burrito.jpeg");
+    min-height:400px;
+    background-size:cover;
+    background-position:center;
+    }
+
+
+.section{
+    text-align:center;
+    padding:50px 80px;
+    }
+
+
+.section-light{
+    background-color:#f4f4f4;
+    color:#666;
+    }
+
+
+.section-dark{
+    background-color:#282e34;
+    color:#ddd;
+    }
+
+.ptext{
+    position:absolute;
+    top:50%;
+    width:100%;
+    text-align:center;
+    color:#000;
+    font-weight:27px;
+    text-transform:uppercase;
+    letter-spacing:8px;
+
+    }
+
+
+
+    *{
+  margin:0;
+  padding:0;
+  }
+
+
+
+
+header h1{
+    color:#ffffff;
+    }
+
+.row{
+    max-width:1140px;
+    margin:0 auto;
+    }
+
+.main-nav{
+    float:right;
+    list-style:none;
+    }
+
+.main-nav li{
+    display:inline-block;
+    margin-left:20px;
+    margin-top:40px;
+
+    }
+
+.main-nav li a{
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:bold;
+    }
+
+ .main-nav li a:hover{
+    color:#13d1c5;
+    border-bottom:2px solid #13d1c5;
+    transition:all 0.5s ease-in;
+    padding:10px;
+
+    }
+
+
+
+
+.button{
+    border-sizing:border-box;
+    margin-top:10px;
+    height:40px;
+    width:130px;
+    border-radius:20px;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #13d1c5 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #13d1c5 4%);
+    background-position: -200px 0;
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    border:1px solid #13d1c5;
+    color:#13d1c5;
+    outline:none;
+
+    }
+
+.button:hover {
+  cursor: pointer;
+  background:#13d1c5;
+  color:#ffffff;
+  transition:all 0.3s ease-in;
+  }
+
+.button:active {
+  background-color: #40a29a;
+  transform: translateY(4px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

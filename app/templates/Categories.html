@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link href="{{url_for('static', filename='styles/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='styles/categories.css')}}" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <div class="row">
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Meet us</a></li>
+                    <li><a href="myrecipes.html">My recipes</a></li>
+                    <li><a href="Sign-in.html" >Login</a></li>
+                    <li><a href="Sign-up.html">Sign up</a></li>
+                    <li><a href="Categories.html" id="current">Categories</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="../static/img/logo.png">
+        </div>
+    </header>
+    <div class="container">
+        <div class="right">
+            <div class="Formbox">
+                <form>
+                    <textarea rows="10" cols="100" placeholder="New recipe" required></textarea>
+                </form>
+            </div>
+        </div>
+        <div class="left">
+            <div class="Formbox">
+                <form>
+                    <input placeholder="Recipe Name" type="text" required>
+                    <input placeholder="Recipe type"  type="text" required>
+
+                    <p class="question">Browse recipes ?</p>
+                    <button class="button" type="submit">Find</button>
+                    <button class="button" type="submit">Create</button>
+                    <button class="button" type="submit">Delete</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
