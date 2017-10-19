@@ -1,8 +1,7 @@
-import os
 import unittest
 
 
-import app
+from app import app
 
 class BasicTest(unittest.TestCase):
     '''Test if flask app returns correct results'''
