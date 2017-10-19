@@ -1,5 +1,5 @@
 
-
+![Coverage Status](https://coveralls.io/repos/github/sir3n-sn/Recipe-challenge/badge.svg?branch=master)]
 ![Build status](https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master)
 
 # Yummy recipes
