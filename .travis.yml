@@ -8,6 +8,6 @@ install:
 cache: pip3
 script:
   - pytest 
-  - coverage run
+  - codecov
        
 
