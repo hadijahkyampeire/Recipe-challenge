@@ -2,7 +2,12 @@ language: python
 python:
   - 3.6
   - nightly
+install:
+  - pip3 install -r requirements.txt
+  - pip3 install coveralls
 cache: pip3
 script:
-  - pytest        
+  - pytest 
+  - coverage run
+       
 
