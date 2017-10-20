@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Yummy Recipes</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/style.css')}}">
+    <link href="{{url_for('static', filename='styles/style.css')}}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header>
@@ -22,11 +22,11 @@
         <div class="row">
             <nav>
                 <ul class="main-nav">
-                    <li><a href="index.html" id="current">Meet us</a></li>
-                    <li><a href="myrecipes.html">My recipes</a></li>
-                    <li><a href="Sign-in.html">Login</a></li>
-                    <li><a href="Sign-up.html">Sign-up</a></li>
-                    <li><a href="Categories.html">Categories</a></li>
+                    <li><a href="/" id="current">Meet us</a></li>
+                    <li><a href="/myrecipes">My recipes</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/Sign-up">Sign-up</a></li>
+                    <li><a href="/Categories">Categories</a></li>
             </ul>
             </nav>
         </div>
