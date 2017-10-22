@@ -1,7 +1,7 @@
 
 
 
-![Test Coverage](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/test_coverage)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/test_coverage)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/test_coverage)
 ![Maintainability](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/maintainability)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/maintainability)
 ![Coverage Status](https://coveralls.io/repos/github/sir3n-sn/Recipe-challenge/badge.svg?branch=master)
 ![Build status](https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master)
@@ -76,14 +76,16 @@ These tests ensure login credentials are secure, recipes
 are created, Users are registered
 example below
 
-
+```
+## Test Example
+```
 
 ```
     def test_user_password_is_encrypted(self):
         """Returns true if password is encrypted"""
         self.assertNotEqual(userdata[self.Sir3n.user_id]['password'], 'Kali2017', msg='Password is not encrypted')
 ```
-
+````
 ### Need for test
 
 To ensure maintainability of code in future developments
@@ -91,17 +93,13 @@ This ensures no new code breaks our already existing code
 
 Note: Travis-ci ensures continous integration and runs test automatically for this build
 
-```
-Give an example
-```
-
 ## Deployment
 
 Heroku app coming up in afew
 
 ## Built With
 
-* [Html5 and css3 python and flask] - The markup and styling sheet
+* [Html5, css3 python and flask, Bootstrap] - The markup and styling sheet
 * [Dependencies in requirements.txt] - Dependency Management
 * 
 ## Contributing
