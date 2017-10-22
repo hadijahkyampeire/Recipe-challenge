@@ -1,8 +1,8 @@
 
 
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/test_coverage)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/test_coverage)
-![Maintainability](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/maintainability)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/test_coverage)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/test_coverage)]
+[![Maintainability](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/maintainability)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/maintainability)]
 ![Coverage Status](https://coveralls.io/repos/github/sir3n-sn/Recipe-challenge/badge.svg?branch=master)
 ![Build status](https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master)
 
@@ -16,6 +16,8 @@ A simple app based on flask
 ## useful links
 https://www.pivotaltracker.com/n/projects/2119357
 https://sir3n-sn.github.io/Recipe-challenge/designs/UI/index.html
+
+
 ## Heroku app coming up once pull request is accepted
 ##Application snippets
 ![Alt text](/images/login.png?raw=true "Login page")
