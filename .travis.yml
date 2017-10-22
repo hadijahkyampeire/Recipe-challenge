@@ -10,8 +10,6 @@ cache: pip3
 script:
   - pytest
   - coveralls
-  - nosetests
-  - nosetests --with-coverage --cover-package=tests && coverage report
 notifications:
   webhooks: ! 'https://coveralls.io/webhook?repo_token=%{$COVERALLS_REPO_TOKEN}'
 
