@@ -9,6 +9,7 @@ body{
     height:100vh;
     background-position:center;
     background-size:cover;
+    background-repeat: no-repeat;
     }
 
 .hero{
@@ -83,3 +84,5 @@ header h1{
 #current{
     color:#13d1c5;
     }
+
+
