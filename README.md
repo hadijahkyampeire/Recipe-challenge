@@ -15,7 +15,8 @@ A simple app based on flask
 
 ## useful links
 https://www.pivotaltracker.com/n/projects/2119357
-https://sir3n-sn.github.io/Recipe-challenge/designs/UI/index.html
+
+https://sir3n-sn.github.io/Recipe-challenge
 
 
 ## Heroku app coming up once pull request is accepted
