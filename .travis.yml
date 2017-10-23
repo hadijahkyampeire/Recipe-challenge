@@ -20,7 +20,7 @@ script:
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success: 
-  - COVERALLS_REPO_TOKEN=WATWd80l2bTYY4tf8ilTNnM5CKFjkHKYx coveralls
+  - coveralls
 
 
 
