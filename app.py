@@ -161,6 +161,5 @@ def delete(id):
     return redirect(url_for('myrecipes'))
 
 
-if __name__ == '__main__':
-    app.secret_key = 'Sir3n.sn@gmail.com'
-    app.run(debug=True)
+
+app.secret_key = 'Sir3n.sn@gmail.com'
