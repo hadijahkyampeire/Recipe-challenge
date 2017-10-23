@@ -1,0 +1,19 @@
+engines:
+  pylint:
+    enabled: true
+    config:
+      extensions:
+      - .py
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - python:
+ratings:
+  paths:
+  - **
+
+exclude_paths:
+- "venv/"
+- "**/templates/"
+- "**/__pycache__/"

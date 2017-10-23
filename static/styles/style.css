@@ -5,10 +5,11 @@
 
 body{
     font-family:tahoma;
-    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("img/cover.jpg");
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("../img/cover.jpg");
     height:100vh;
     background-position:center;
     background-size:cover;
+    background-repeat: no-repeat;
     }
 
 .hero{
@@ -59,3 +60,29 @@ header h1{
     width:100px;
     linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
     }
+
+.btn{
+    border:2px solid #13d1c5;
+    padding:10px 30px;
+    color:#ffffff;
+    text-decoration:none;
+    border-radius:12px;
+
+
+    }
+
+.btn:hover{
+    transition:all 0.5s ease-in;
+    border:2px solid #ffffff;
+    color:#13d1c5;
+    }
+
+.button{
+    margin-top:20px;
+    }
+
+#current{
+    color:#13d1c5;
+    }
+
+

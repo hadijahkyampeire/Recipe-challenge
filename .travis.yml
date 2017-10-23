@@ -5,8 +5,13 @@ python:
 install:
   - pip3 install -r requirements.txt
   - pip3 install coveralls
-  - pip3 install codecov
 cache: pip3
 
 script:
   - pytest
+  - coveralls
+notifications:
+  webhooks: ! 'https://coveralls.io/webhook?repo_token=%{$COVERALLS_REPO_TOKEN}'
+
+after_success: coveralls
+  - "coveralls"
