@@ -1,5 +1,5 @@
 engines:
-  pylint:
+  pep8:
     enabled: true
     config:
       extensions:
@@ -8,12 +8,7 @@ engines:
     enabled: true
     config:
       languages:
-      - python:
-ratings:
-  paths:
-  - **
-
+      - python: true
 exclude_paths:
-- "venv/"
-- "**/templates/"
-- "**/__pycache__/"
+- "venv/**"
+- "templates/**"
