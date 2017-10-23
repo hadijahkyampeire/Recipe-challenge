@@ -1,3 +1,6 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=01e383c8e159f39ccf48d4991cf8933721f3c878cdc3025e817d880fc39a342e
 language: python
 python:
   - 3.6
@@ -6,12 +9,21 @@ install:
   - pip3 install -r requirements.txt
   - pip3 install coveralls
 cache: pip3
-
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - pytest
   - coveralls
-notifications:
-  webhooks: ! 'https://coveralls.io/webhook?repo_token=%{$COVERALLS_REPO_TOKEN}'
+  - coverage report test_user_data.py app.py
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+after_success: 
+  - coveralls
 
-after_success: coveralls
-  - "coveralls"
+
+
+
+
+
