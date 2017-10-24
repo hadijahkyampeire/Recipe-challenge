@@ -26,6 +26,6 @@ class TestUser(unittest.TestCase):
 
     def test_recipe_is_created(self):
         """Tests if user recipe is added to dictionery"""
-        meal = Recipe('Pizza', 'Carbs', 'Blah blah blah 2 spoons, and voila cooked')
+        meal = Recipe('current_user', 'Pizza', 'Carbs', 'Blah blah blah 2 spoons, and voila cooked')
         self.assertIn(meal.recipe_id, recipes, msg='recipe was added')
         self.assertIn('Pizza', recipes[meal.recipe_id]['Recipe name'],)
