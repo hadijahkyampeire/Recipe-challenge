@@ -29,4 +29,3 @@ class TestUser(unittest.TestCase):
         meal = Recipe('current_user', 'Pizza', 'Carbs', 'Blah blah blah 2 spoons, and voila cooked')
         self.assertIn('current_user', recipes, msg='recipe was added')
         self.assertIn('Pizza', recipes['current_user'][meal.recipe_id]['Recipe name'],)
-unittest.main()
