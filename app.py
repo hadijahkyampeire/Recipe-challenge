@@ -6,7 +6,6 @@ from functools import wraps
 
 app = Flask(__name__)
 
-
 def login_required(f):
     """Creates a decorator @login required that wraps around any function
     and adds a layer of protection against unauthorized users"""
@@ -30,9 +29,13 @@ def index():
 @login_required
 def myrecipes():
     """routes to the recipes page for authorized users"""
-
+    email = session['email']
     if recipes:
-        return render_template('myrecipes.html', recipes_list=recipes)
+        try:
+            return render_template('myrecipes.html', recipes_list=recipes[email], email=email)
+        except KeyError:
+            msg = 'Create your first recipe'
+            return render_template('myrecipes.html', msg=msg)
     else:
         msg = 'Create your first recipe'
         return render_template('myrecipes.html', msg=msg)
@@ -44,15 +47,37 @@ def categories():
     """routes to the categories page
     handles post request from user and adds them to the
     database in this case a dictionary, adds them to recipe page"""
+    email = session['email']
     form = RecipeForm(request.form)
     if request.method == 'POST' and form.validate():
         recipe_name = form.recipe_name.data
         recipe_type = form.recipe_type.data
         recipe = form.recipe.data
-        Recipe_object = Recipe(recipe_name, recipe_type, recipe)
+        recipe_object= Recipe(email, recipe_name, recipe_type, recipe)
         flash('New recipe added', 'success')
         return redirect(url_for('myrecipes'))
     return render_template('Categories.html', form=form)
+
+
+@app.route('/edit_recipes/<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit_recipes(id):
+    email = session['email']
+    result = recipes[email][int(id)]
+    form = RecipeForm(request.form)
+    if request.method == 'GET':
+        form.recipe_name.data = result['Recipe name']
+        form.recipe_type.data = result['Recipe Type']
+        form.recipe.data = result['Recipe']
+    if request.method == 'POST' and form.validate():
+        recipe_name = form.recipe_name.data
+        recipe_type = form.recipe_type.data
+        recipe = form.recipe.data
+        recipe_object = Recipe(email, recipe_name, recipe_type, recipe)
+        del recipes[email][int(id)]
+        flash('Recipe Updated', 'success')
+        return redirect(url_for('myrecipes'))
+    return render_template('edit_recipes.html', form=form)
 
 
 class RegistrationForm(Form):
@@ -117,6 +142,7 @@ def sign_up():
         # email is used here to as a unique value for every user object
         email = form.email.data  # actual email used as object name
         email = User(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
+        session['email'] = email.user_id
         flash('You are now registered and can login', 'success')
         return redirect(url_for('login'))
     return render_template('Sign-up.html', form=form)
@@ -133,33 +159,13 @@ class RecipeForm(Form):
                            validators.input_required()])
 
 
-@app.route('/edit_recipes/<string:id>', methods=['GET', 'POST'])
-@login_required
-def edit_recipes(id):
-    result = recipes[int(id)]
-    form = RecipeForm(request.form)
-    if request.method == 'GET':
-        form.recipe_name.data = result['Recipe name']
-        form.recipe_type.data = result['Recipe Type']
-        form.recipe.data = result['Recipe']
-    if request.method == 'POST' and form.validate():
-        recipe_name = form.recipe_name.data
-        recipe_type = form.recipe_type.data
-        recipe = form.recipe.data
-        recipe_object = Recipe(recipe_name, recipe_type, recipe)
-        del recipes[int(id)]
-        flash('Recipe Updated', 'success')
-        return redirect(url_for('myrecipes'))
-    return render_template('edit_recipes.html', form=form)
-
-
 @app.route('/delete/<string:id>', methods=['POST'])
 def delete(id):
     """Deletes a recipe when invoked"""
-    del recipes[int(id)]
+    email = session['email']
+    del recipes[email][int(id)]
     flash('Recipe Deleted', 'success')
     return redirect(url_for('myrecipes'))
-
 
 
 app.secret_key = 'Sir3n.sn@gmail.com'

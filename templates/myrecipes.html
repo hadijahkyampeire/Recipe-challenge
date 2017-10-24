@@ -44,7 +44,7 @@
             </span>
         </div>
     </div>
-    {%for recipe in recipes_list %}
+    {%for recipe in recipes_list%}
     {% if recipe is divisibleby 2%}
     <div class="pimg1">
         <div class="ptext">
@@ -62,8 +62,8 @@
             {{recipes_list[recipe]['Recipe'] | safe}}
         </p>
         <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Edit</button>
-        <button class="button" onclick="location.href='index.html'" type="submit">Home</button>
-        <form class= "formation" method="post" action="{{url_for('delete', id=recipe)}}">
+        <button class="button" onclick="location.href='/'" type="submit">Home</button>
+        <form class= "formation" method="post" action="{{url_for('delete', id=recipe , user_id=email)}}">
             <input type="hidden" name="_method" value="DELETE">
             <button class="button" type="submit">Delete</button>
         </form>
@@ -97,10 +97,9 @@
         <p>
             {{recipes_list[recipe]['Recipe'] | safe}}
         </p>
-        <button class="button" type="submit">Edit</button>
-        <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Home</button>
-
-        <form class= "formation" method="post" action="{{url_for('delete', id=recipe)}}">
+        <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Edit</button>
+        <button class="button" onclick="location.href='/'" type="submit">Home</button>
+        <form class= "formation" method="post" action="{{url_for('delete', id=recipe , user_id=email)}}">
             <input type="hidden" name="_method" value="DELETE">
             <button class="button" type="submit">Delete</button>
         </form>
