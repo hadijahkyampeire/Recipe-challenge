@@ -19,7 +19,8 @@ https://www.pivotaltracker.com/n/projects/2119357
 https://sir3n-sn.github.io/Recipe-challenge
 
 
-## Heroku app coming up once pull request is accepted
+## Heroku app demo
+http://recipe-challenge.herokuapp.com
 ##Application snippets
 ![Alt text](/images/login.png?raw=true "Login page")
 ![Alt text](/images/Sign-up.png?raw=true "Registration page")
