@@ -15,10 +15,14 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - pytest
+  - nosetests --exe -v
+  - nosetests --exe --with-coverage --cover-package=app.py
+  - coveralls
+
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success: 
-  - coveralls
+  - "coveralls"
 
 
 
