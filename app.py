@@ -89,7 +89,7 @@ class RegistrationForm(Form):
     email = StringField(u'Email', validators=[validators.Length(min=10, max=30),
                         validators.input_required(), validators.Email()])
     password = PasswordField('Password', [
-        validators.DataRequired(),
+        validators.DataRequired(), validators.Length(min=8, max=25),
         validators.EqualTo('confirm', message='Passwords do not match')
     ])
 
