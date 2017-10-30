@@ -82,12 +82,12 @@ def edit_recipes(id):
 
 class RegistrationForm(Form):
     """Creates a registration form with validations for users to sign up"""
-    first_name = StringField(u'First Name', validators=[validators.Length(min=2, max=20),
+    first_name = StringField(u'First Name', validators=[validators.Length(min=3, max=20),
                              validators.input_required()])
-    last_name = StringField(u'Last Name', validators=[validators.Length(min=2, max=20),
+    last_name = StringField(u'Last Name', validators=[validators.Length(min=3, max=20),
                             validators.input_required()])
-    email = StringField(u'Email', validators=[validators.Length(min=2, max=30),
-                        validators.input_required()])
+    email = StringField(u'Email', validators=[validators.Length(min=10, max=30),
+                        validators.input_required(), validators.Email()])
     password = PasswordField('Password', [
         validators.DataRequired(),
         validators.EqualTo('confirm', message='Passwords do not match')
@@ -151,11 +151,11 @@ def sign_up():
 class RecipeForm(Form):
     """Creates the recipe form to rendered in the add recipe page
     (Category page)"""
-    recipe_name = StringField(u'Recipe Name', validators=[validators.Length(min=2, max=30),
+    recipe_name = StringField(u'Recipe Name', validators=[validators.Length(min=3, max=30),
                               validators.input_required()])
-    recipe_type = StringField(u'Recipe Type', validators=[validators.Length(min=2, max=30),
+    recipe_type = StringField(u'Recipe Type', validators=[validators.Length(min=6, max=30),
                               validators.input_required()])
-    recipe = TextAreaField(u'Recipe', validators=[validators.Length(min=10),
+    recipe = TextAreaField(u'Recipe', validators=[validators.Length(min=30),
                            validators.input_required()])
 
 
