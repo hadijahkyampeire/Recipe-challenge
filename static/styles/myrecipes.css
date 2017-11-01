@@ -53,21 +53,22 @@ body,html{
 
 .pimg1{
     background-image:url("../img/coffee.jpg");
-    min-height:100%;
+    min-height:50vh !important;
+    height: 50vh;
     background-size:cover;
     background-position:center;
     }
 
 .pimg2{
     background-image:url("../img/meal.jpg");
-    min-height:400px;
+    min-height:200px;
     background-size:cover;
     background-position:center;
     }
 
 .pimg3{
     background-image:url("../img/burrito.jpeg");
-    min-height:400px;
+    min-height:200px;
     background-size:cover;
     background-position:center;
     }
@@ -177,6 +178,15 @@ header h1{
 .button:active {
   background-color: #40a29a;
   transform: translateY(4px);
+}
+
+footer{
+text-align: center;
+width:100%;
+margin-top:3em;
+padding: 2em;
+letter-spacing:2em;
+text-transform:uppercase;
 }
 
 

@@ -29,7 +29,12 @@ def index():
 @login_required
 def myrecipes():
     """routes to the recipes page for authorized users"""
-    email = session['email']
+    try:
+        email = session['email']
+    except KeyError:
+        msg = 'Please sign-up to login'
+        form = RegistrationForm(request.form)
+        return render_template('Sign-up.html', form=form, msg=msg)
     if recipes:
         try:
             return render_template('myrecipes.html', recipes_list=recipes[email], email=email)
@@ -111,7 +116,6 @@ def login():
             if check_password_hash(userdata[email]['password'], password_given):
                 session['logged_in'] = True
                 session['user'] = userdata[email]['First Name']
-                flash('logged in', 'success')
                 return redirect('myrecipes')
 
             else:
