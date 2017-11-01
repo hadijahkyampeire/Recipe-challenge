@@ -1,7 +1,8 @@
 body,html{
     margin:0;
-    height:100%;
     font-family:"Lato", sans-serif;
+    min-height:85vh;
+    position:relative;
     font-weight:400;
     line-height:1.8em;
     font-size:16px;
@@ -14,10 +15,7 @@ body,html{
 .pimg1{
     position:relative;
     opacity:0.70;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
+    margin-bottom: 3em;
 
     }
 
@@ -40,7 +38,7 @@ body,html{
 
 
 
-.pimg3{
+/*.pimg3{
     position:relative;
     opacity:0.70;
     background-size:cover;
@@ -72,11 +70,13 @@ body,html{
     background-size:cover;
     background-position:center;
     }
+    */
 
 
 .section{
     text-align:center;
     padding:50px 80px;
+    border-bottom:2px solid #13d1c5;
     }
 
 
@@ -92,10 +92,10 @@ body,html{
     }
 
 .ptext{
-    position:absolute;
-    top:50%;
+    margin-top: 4em;
     width:100%;
-    text-align:center;
+    text-align:left;
+    padding-left:2em;
     color:#000;
     font-weight:27px;
     text-transform:uppercase;
@@ -187,6 +187,7 @@ margin-top:3em;
 padding: 2em;
 letter-spacing:2em;
 text-transform:uppercase;
+clear:both;
 }
 
 
