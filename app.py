@@ -32,9 +32,7 @@ def myrecipes():
     try:
         email = session['email']
     except KeyError:
-        msg = 'Please sign-up to login'
-        form = RegistrationForm(request.form)
-        return render_template('Sign-up.html', form=form, msg=msg)
+        return redirect(url_for('sign_up'))
     if recipes:
         try:
             return render_template('myrecipes.html', recipes_list=recipes[email], email=email)
