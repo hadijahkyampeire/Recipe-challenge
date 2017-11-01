@@ -46,13 +46,6 @@
     </div>
     {%for recipe in recipes_list%}
     {% if recipe is divisibleby 2%}
-    <div class="pimg1">
-        <div class="ptext">
-            <span class="border">
-                Yummy Recipes
-            </span>
-        </div>
-    </div>
     <section class="section section-light">
         <h2>
             {{recipes_list[recipe]['Recipe name'] | safe}}
