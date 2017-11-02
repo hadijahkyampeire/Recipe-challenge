@@ -15,7 +15,6 @@ before_script:
 script:
   - pytest
   - pytest --cov=tests/ tests/test_user_data.py
-  - codeclimate-test-reporter --file .coverage
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success: 
