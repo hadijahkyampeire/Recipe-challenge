@@ -6,7 +6,6 @@ from functools import wraps
 
 app = Flask(__name__)
 
-
 def login_required(f):  # pragma: no cover
     """Creates a decorator @login required that wraps around any function
     and adds a layer of protection against unauthorized users"""
@@ -20,13 +19,13 @@ def login_required(f):  # pragma: no cover
     return wrap
 
 
-@app.route('/')  # pragma: no cover
+@app.route('/')
 def index():
     """routes to the index page"""
     return render_template('index.html')
 
 
-@app.route('/myrecipes')  # pragma: no cover
+@app.route('/myrecipes')   # pragma: no cover
 @login_required
 def myrecipes():
     """routes to the recipes page for authorized users"""
@@ -100,7 +99,7 @@ class RegistrationForm(Form):  # pragma: no cover
     confirm = PasswordField('Confirm Password')
 
 
-@app.route('/login', methods=['GET', 'POST'])  # pragma: no cover
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     """Routes to the login page and signs in the user
     if email and password(hashed) matches the one in the user dictionary
@@ -127,7 +126,7 @@ def login():
     return render_template('Sign-in.html')
 
 
-@app.route('/logout')  # pragma: no cover
+@app.route('/logout')
 def logout():
     """clears the logged in user session and return him/her to the login page"""
     session.clear()
@@ -135,7 +134,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/Sign-up', methods=['GET', 'POST'])  # pragma: no cover
+@app.route('/Sign-up', methods=['GET', 'POST'])
 def sign_up():
     """Gives user ability to sign-up
     stores their information in userdata dictionery
@@ -169,6 +168,5 @@ def delete(id):
     del recipes[email][int(id)]
     flash('Recipe Deleted', 'success')
     return redirect(url_for('myrecipes'))
-
 
 app.secret_key = 'Sir3n.sn@gmail.com'  # pragma: no cover

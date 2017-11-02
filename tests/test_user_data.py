@@ -1,8 +1,7 @@
 import unittest
 from data import userdata, User, recipes, Recipe
-from app import app
+from app.app import app
 from flask_testing import TestCase
-from flask import url_for
 
 class TestUser(unittest.TestCase):
     """Test for user and info provided"""
@@ -44,6 +43,9 @@ class MyViewTestCase(TestCase):
         test_app.config['TESTING'] = True
         return test_app
 
+    def setUp(self):
+        self.Sir3n = User('Sir3n.sn@gmail.com', 'Kali2017', 'Dhulkifli', 'Hussein')
+
     def test_app_running(self):
             self.app.test_client().get('/')
             self.assert_template_used('index.html')
@@ -53,7 +55,7 @@ class MyViewTestCase(TestCase):
         assert b"Sign-up" in rv.data
         self.assert_template_used('Sign-up.html')
 
-    def test_sign_in_user(self):
+    def test_sign_up_user(self):
         rv = self.app.test_client().post('/Sign-up', data={
             "first_name": 'Kali',
             "last_name": 'Kali',
@@ -70,6 +72,14 @@ class MyViewTestCase(TestCase):
          })
 
         assert b'email not found' in login.data
+
+    def test_login_user_with_wrong_password(self):
+        self.Sir3n = User('Sir3n.sn@gmail.com', 'Kali2017', 'Dhulkifli', 'Hussein')
+        login = self.app.test_client().post('/login', data={
+            "email": 'Sir3n.sn@gmail.com',
+            "password": '12345678910'
+        }, follow_redirects=True)
+        assert b'Password does not match. Please try again' in login.data
 
     def test_unauthorized_user_access_recipe_page(self):
         unauthorized = self.app.test_client().get('/myrecipes', follow_redirects=True)

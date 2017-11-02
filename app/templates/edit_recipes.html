@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link href="{{url_for('static', filename='styles/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='styles/categories.css')}}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+{% from "_formhelpers.html" import render_field %}
+{% include "_messages.html" %}
+    <header>
+        <div class="row">
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="/">Meet us</a></li>
+                    <li><a href="/myrecipes">My recipes</a></li>
+                    <li><a href="/Categories">Categories</a></li>
+                    <li><a href="/edit_recipes" id="current">Edit</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="../static/img/logo.png">
+        </div>
+    </header>
+    <div class="container">
+        <div class="Formbox">
+                <form method="POST" action="">
+                    <div class="form-group">
+                    {{render_field(form.recipe_name, class_="form-control")}}
+                    </div>
+                    <div class="form-group">
+                    {{render_field(form.recipe_type, class_="form-control")}}
+                    </div>
+                    <div class="form-group">
+                    {{render_field(form.recipe, id='editor')}}
+                    </div>
+                    <button class="button" type="submit">Update</button>
+                </form>
+
+                </form>
+            </div>
+    </div>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor')
+    </script>
+    <style>
+        .header{
+            width:100px;
+            }
+        .container{
+            width:70%;
+            margin-top: -80px;
+            }
+        .form-group{
+            margin-top:-20px;
+            color:#f4f4f4;
+            }
+        .form-control{
+            width:300px;
+            padding:-15px;
+            margin-bottom:10px;
+            }
+        body{
+            background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('../static/img/cover.jpg');
+            background-size:cover;
+            background-position:center;
+            height:100vh;
+            }
+        .form-control {
+  margin:0;
+  width: 200px;
+  display: block;
+  border: none;
+  padding:5px;
+  border-bottom: solid 1px #f4f4f4;
+  -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #f4f4f4 4%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #f4f4f4 4%);
+  background-position: -200px 0;
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+    .form-group{
+        margin-bottom:20px;
+        }
+
+
+    </style>
+</body>

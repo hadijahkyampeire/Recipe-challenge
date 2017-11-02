@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='styles/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='styles/Sign-in.css')}}" rel="stylesheet">
+
+</head>
+<body>
+{% from "_formhelpers.html" import render_field %}
+{% include "_messages.html" %}
+    <header>
+        <div class="row">
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="/">Meet us</a></li>
+                    <li><a href="/login" id="current">Login</a></li>
+                    <li><a href="/Sign-up">Sign-up</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="../static/img/logo.png">
+        </div>
+    </header>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <div class="Formbox">
+                <form method="POST" action="">
+                    <input placeholder="email" type="text" name="email" required value={{request.form.email}}>
+                    <input placeholder="Password" type="Password" name="password" required value={{request.form.email}}>
+                    <p class="question">Forgot Password?</p>
+                    <button class="button" type="submit">Login</button>
+
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

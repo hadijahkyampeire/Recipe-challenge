@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Recipes</title>
+    <link href="{{url_for('static', filename='styles/myrecipes.css')}}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+            .formation{
+                float:right;
+                display:inline;
+                }
+            .button{
+                margin-left:20px;
+                margin-right:30px;
+                }
+styles
+                .nav {
+                margin-right:30px;
+                background:#f4f4f4;
+                border-radius:30px;
+                margin-top:-16px;
+                text-color:#40a29a;
+                }
+
+                #user{
+                        color:#40a29a;
+                        background:#f4f4f4;
+                        padding:20px;
+                        border-radius:20px;
+                        }
+                .achola{
+                    width:100%;
+                    margin:1em auto;
+                 }
+                 .Nto{
+                 width: 33%;
+                 margin:0 auto;
+                 }
+        </style>
+
+</head>
+<body>
+    <div class="pimg1">
+        {% include "_messages.html" %}
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Categories">Categories</a></li>
+        </ul>
+        <div class="ptext">
+                    <small id="user">
+                        Welcome {{session.user}}
+                    </small>
+                </span>
+            </span>
+        </div>
+    </div>
+    {%for recipe in recipes_list%}
+    {% if recipe is divisibleby 2%}
+    <section class="section section-light">
+        <h2>
+            {{recipes_list[recipe]['Recipe name'] | safe}}
+        </h2>
+
+        <p>
+            {{recipes_list[recipe]['Recipe'] | safe}}
+        </p>
+        <div class="achola">
+            <div class="Nto">
+            <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Edit</button>
+            <form class= "formation" method="post" action="{{url_for('delete', id=recipe , user_id=email)}}">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="button" type="submit">Delete</button>
+            </form>
+            </div>
+        </div>
+
+    </section>
+    {% else %}
+
+    <section class="section section-dark">
+        <h2>
+            {{recipes_list[recipe]['Recipe name'] | safe}}
+        </h2>
+
+        <p>
+            {{recipes_list[recipe]['Recipe'] | safe}}
+        </p>
+        <div class="achola">
+            <div class="Nto">
+            <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Edit</button>
+            <form class= "formation" method="post" action="{{url_for('delete', id=recipe , user_id=email)}}">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="button" type="submit">Delete</button>
+            </form>
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+    {% endfor %}
+
+    <footer >
+        <div>
+            <span class="border">
+                Yummy Recipes
+            </span>
+        </div>
+    </footer>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
