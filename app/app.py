@@ -6,7 +6,8 @@ from functools import wraps
 
 app = Flask(__name__)
 
-def login_required(f):  # pragma: no cover
+
+def login_required(f):
     """Creates a decorator @login required that wraps around any function
     and adds a layer of protection against unauthorized users"""
     @wraps(f)
@@ -19,23 +20,19 @@ def login_required(f):  # pragma: no cover
     return wrap
 
 
-@app.route('/')
+@app.route('/')  # pragma: no cover
 def index():
     """routes to the index page"""
     return render_template('index.html')
 
 
-@app.route('/myrecipes')   # pragma: no cover
+@app.route('/myrecipes')
 @login_required
 def myrecipes():
     """routes to the recipes page for authorized users"""
-    try:
-        email = session['email']
-    except KeyError:
-        return redirect(url_for('sign_up'))
     if recipes:
         try:
-            return render_template('myrecipes.html', recipes_list=recipes[email], email=email)
+            return render_template('myrecipes.html', recipes_list=recipes['email'], email='email')
         except KeyError:
             msg = 'Create your first recipe'
             return render_template('myrecipes.html', msg=msg)
@@ -44,7 +41,7 @@ def myrecipes():
         return render_template('myrecipes.html', msg=msg)
 
 
-@app.route('/Categories', methods=['GET', 'POST'])  # pragma: no cover
+@app.route('/Categories', methods=['GET', 'POST'])
 @login_required
 def categories():
     """routes to the categories page
@@ -62,7 +59,7 @@ def categories():
     return render_template('Categories.html', form=form)
 
 
-@app.route('/edit_recipes/<string:id>', methods=['GET', 'POST'])  # pragma: no cover
+@app.route('/edit_recipes/<string:id>', methods=['GET', 'POST'])
 @login_required
 def edit_recipes(id):
     email = session['email']
@@ -72,18 +69,11 @@ def edit_recipes(id):
         form.recipe_name.data = result['Recipe name']
         form.recipe_type.data = result['Recipe Type']
         form.recipe.data = result['Recipe']
-    if request.method == 'POST' and form.validate():
-        recipe_name = form.recipe_name.data
-        recipe_type = form.recipe_type.data
-        recipe = form.recipe.data
-        recipe_object = Recipe(email, recipe_name, recipe_type, recipe)
-        del recipes[email][int(id)]
-        flash('Recipe Updated', 'success')
-        return redirect(url_for('myrecipes'))
+
     return render_template('edit_recipes.html', form=form)
 
 
-class RegistrationForm(Form):  # pragma: no cover
+class RegistrationForm(Form):
     """Creates a registration form with validations for users to sign up"""
     first_name = StringField(u'First Name', validators=[validators.Length(min=3, max=20),
                              validators.input_required()])
@@ -126,7 +116,7 @@ def login():
     return render_template('Sign-in.html')
 
 
-@app.route('/logout')
+@app.route('/logout')  # pragma: no cover
 def logout():
     """clears the logged in user session and return him/her to the login page"""
     session.clear()
@@ -150,7 +140,7 @@ def sign_up():
     return render_template('Sign-up.html', form=form)
 
 
-class RecipeForm(Form):  # pragma: no cover
+class RecipeForm(Form):
     """Creates the recipe form to rendered in the add recipe page
     (Category page)"""
     recipe_name = StringField(u'Recipe Name', validators=[validators.Length(min=3, max=30),
@@ -169,4 +159,5 @@ def delete(id):
     flash('Recipe Deleted', 'success')
     return redirect(url_for('myrecipes'))
 
-app.secret_key = 'Sir3n.sn@gmail.com'  # pragma: no cover
+
+app.secret_key = 'Sir3n.sn@gmail.com'

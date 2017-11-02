@@ -93,6 +93,14 @@ class MyViewTestCase(TestCase):
         unauthorized = self.app.test_client().get('/edit_recipes/1', follow_redirects=True)
         assert b'Unauthorized to view this page. Please login' in unauthorized.data
 
+    def test_user_is_taken_to_recipe_page_after_login(self):
+        self.Kali = User('Kali@gmail.com', 'Kali2017', 'Dhulkifli', 'Hussein')
+        login = self.app.test_client().post('/login', data={
+                "email": 'Kali@gmail.com',
+                "password": 'Kali2017'
+        }, follow_redirects=True, )
+        assert b'myrecipes' in login.data
+
     def test_logout_user(self):
         logout = self.app.test_client().get('/logout', follow_redirects=True)
         assert b"You have successfully logged out" in logout.data
