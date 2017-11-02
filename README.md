@@ -1,6 +1,6 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ca71e324cb7d2d470b11/maintainability)](https://codeclimate.com/github/sir3n-sn/Recipe-challenge/maintainability)
-![Coverage Status](https://coveralls.io/repos/github/sir3n-sn/Recipe-challenge/badge.svg?branch=master)
+![Coverage Status](https://coveralls.io/repos/github/sir3n-sn/Recipe-challenge/badge.svg?branch=master&service=github)
 ![Build status](https://travis-ci.org/sir3n-sn/Recipe-challenge.svg?branch=master)
 
 # Yummy recipes
