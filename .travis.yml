@@ -15,6 +15,8 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - pytest
+  - nosetests --exe --with-coverage --cover-package=tests
+  - codeclimate-test-reporter --file .coverage
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success: 
