@@ -1,6 +1,6 @@
 import unittest
 from data import userdata, User, recipes, Recipe
-from app.app import app
+from cover_test.app import app
 from flask_testing import TestCase
 
 class TestUser(unittest.TestCase):
