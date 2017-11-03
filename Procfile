@@ -1,1 +1,1 @@
-web: gunicorn --workers=1 app:app
+web: waitress-serve --threads=8  --port=$PORT app:app

@@ -6,6 +6,7 @@ from functools import wraps
 
 app = Flask(__name__)
 
+
 def login_required(f):
     """Creates a decorator @login required that wraps around any function
     and adds a layer of protection against unauthorized users"""
@@ -56,7 +57,7 @@ def categories():
         recipe_name = form.recipe_name.data
         recipe_type = form.recipe_type.data
         recipe = form.recipe.data
-        recipe_object= Recipe(email, recipe_name, recipe_type, recipe)
+        Recipe(email, recipe_name, recipe_type, recipe)
         flash('New recipe added', 'success')
         return redirect(url_for('myrecipes'))
     return render_template('Categories.html', form=form)
@@ -76,7 +77,7 @@ def edit_recipes(id):
         recipe_name = form.recipe_name.data
         recipe_type = form.recipe_type.data
         recipe = form.recipe.data
-        recipe_object = Recipe(email, recipe_name, recipe_type, recipe)
+        Recipe(email, recipe_name, recipe_type, recipe)
         del recipes[email][int(id)]
         flash('Recipe Updated', 'success')
         return redirect(url_for('myrecipes'))
@@ -142,7 +143,7 @@ def sign_up():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
         # email is used here to as a unique value for every user object
-        email = form.email.data  # actual email used as object name
+        # email = form.email.data  # actual email used as object name
         email = User(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
         session['email'] = email.user_id
         flash('You are now registered and can login', 'success')

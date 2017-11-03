@@ -3,6 +3,7 @@ from data import userdata, User, recipes, Recipe
 from cover_test.app import app
 from flask_testing import TestCase
 
+
 class TestUser(unittest.TestCase):
     """Test for user and info provided"""
 
@@ -66,10 +67,9 @@ class MyViewTestCase(TestCase):
         assert b'You are now registered and can login' in rv.data
 
     def test_login_user_with_wrong_email(self):
-        login = self.app.test_client().post('/login', data=
-        {"email": 'Kaligraph@gmail.com',
-         "password": '12345678',
-         })
+        login = self.app.test_client().post('/login', data={"email": 'Kaligraph@gmail.com',
+                                                            "password": '12345678',
+                                                            })
 
         assert b'email not found' in login.data
 
