@@ -29,12 +29,9 @@ def index():
 @app.route('/myrecipes')
 @login_required
 def myrecipes():
-    """routes to the recipes page for authorized users"""
-    try:
-        email = session['email']
-    except KeyError:
-        return redirect(url_for('sign_up'))
+    """Routes to the recipes page for authorized users only"""
     if recipes:
+        email = session['email']
         try:
             return render_template('myrecipes.html', recipes_list=recipes[email], email=email)
         except KeyError:
@@ -115,6 +112,7 @@ def login():
             if check_password_hash(userdata[email]['password'], password_given):
                 session['logged_in'] = True
                 session['user'] = userdata[email]['First Name']
+                session["email"] = email
                 return redirect('myrecipes')
 
             else:
@@ -144,8 +142,7 @@ def sign_up():
     if request.method == 'POST' and form.validate():
         # email is used here to as a unique value for every user object
         # email = form.email.data  # actual email used as object name
-        email = User(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
-        session['email'] = email.user_id
+        User(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
         flash('You are now registered and can login', 'success')
         return redirect(url_for('login'))
     return render_template('Sign-up.html', form=form)
