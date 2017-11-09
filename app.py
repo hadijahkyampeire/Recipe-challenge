@@ -142,9 +142,13 @@ def sign_up():
     if request.method == 'POST' and form.validate():
         # email is used here to as a unique value for every user object
         # email = form.email.data  # actual email used as object name
-        User(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
-        flash('You are now registered and can login', 'success')
-        return redirect(url_for('login'))
+        if hash(form.email.data) not in userdata:
+            User(form.email.data, form.password.data, form.first_name.data, form.last_name.data)
+            flash('You are now registered and can login', 'success')
+            return redirect(url_for('login'))
+        else:
+            error = "The email address already exists"
+            return render_template('Sign-up.html', error=error, form=form)
     return render_template('Sign-up.html', form=form)
 
 
