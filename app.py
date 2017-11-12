@@ -52,9 +52,8 @@ def categories():
     form = RecipeForm(request.form)
     if request.method == 'POST' and form.validate():
         recipe_name = form.recipe_name.data
-        recipe_type = form.recipe_type.data
         recipe = form.recipe.data
-        Recipe(email, recipe_name, recipe_type, recipe)
+        Recipe(email, recipe_name, recipe)
         flash('New recipe added', 'success')
         return redirect(url_for('myrecipes'))
     return render_template('Categories.html', form=form)
@@ -68,13 +67,11 @@ def edit_recipes(id):
     form = RecipeForm(request.form)
     if request.method == 'GET':
         form.recipe_name.data = result['Recipe name']
-        form.recipe_type.data = result['Recipe Type']
         form.recipe.data = result['Recipe']
     if request.method == 'POST' and form.validate():
         recipe_name = form.recipe_name.data
-        recipe_type = form.recipe_type.data
         recipe = form.recipe.data
-        Recipe(email, recipe_name, recipe_type, recipe)
+        Recipe(email, recipe_name, recipe)
         del recipes[email][int(id)]
         flash('Recipe Updated', 'success')
         return redirect(url_for('myrecipes'))
@@ -156,8 +153,6 @@ class RecipeForm(Form):
     """Creates the recipe form to rendered in the add recipe page
     (Category page)"""
     recipe_name = StringField(u'Recipe Name', validators=[validators.Length(min=3, max=30),
-                              validators.input_required()])
-    recipe_type = StringField(u'Recipe Type', validators=[validators.Length(min=6, max=30),
                               validators.input_required()])
     recipe = TextAreaField(u'Recipe', validators=[validators.Length(min=30),
                            validators.input_required()])

@@ -18,7 +18,7 @@
                 <ul class="main-nav">
                     <li><a href="/">Meet us</a></li>
                     <li><a href="/myrecipes">My recipes</a></li>
-                    <li><a href="/Categories">Categories</a></li>
+                    <li><a href="/Categories">Create</a></li>
                     <li><a href="/edit_recipes" id="current">Edit</a></li>
                 </ul>
             </nav>
@@ -34,16 +34,11 @@
                     {{render_field(form.recipe_name, class_="form-control")}}
                     </div>
                     <div class="form-group">
-                    {{render_field(form.recipe_type, class_="form-control")}}
-                    </div>
-                    <div class="form-group">
                     {{render_field(form.recipe, id='editor')}}
                     </div>
                     <button class="button" type="submit">Update</button>
                 </form>
-
-                </form>
-            </div>
+         </div>
     </div>
 
 
