@@ -1,5 +1,5 @@
 import unittest
-from data import userdata, User, recipes, Recipe
+from data import userdata, User, recipes, Recipe, Category, all_categories
 from cover_test.app import app
 from flask_testing import TestCase
 
@@ -28,6 +28,12 @@ class TestUser(unittest.TestCase):
         here we use the example john and sir3n
         both users share the same password"""
         self.assertNotEqual(userdata[self.Sir3n.user_id]['password'], userdata[self.Johndoe.user_id]['password'])
+
+    def test_category_is_created(self):
+        """This tests if a category is created"""
+        meal = Category('current_user', 'Pizza')
+        self.assertIn('current_user', all_categories, msg='Category was added')
+        self.assertIn('Pizza', all_categories['current_user'][meal.category_id]['Category name'], )
 
     def test_recipe_is_created(self):
         """Tests if user recipe is added to dictionery"""
