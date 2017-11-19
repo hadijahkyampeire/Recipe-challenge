@@ -47,8 +47,8 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/logout">Logout</a></li>
-            <li><a href="/">Home</a></li>
-            <li><a href="/Categories">Create</a></li>
+            <li><a href="/create">Home</a></li>
+            <li><a href="{{url_for('categories', val=id)}}">Create Recipes</a></li>
         </ul>
         <div class="ptext">
                     <small id="user">
@@ -68,8 +68,8 @@
         </p>
         <div class="achola">
             <div class="Nto">
-            <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Edit</button>
-            <form class= "formation" method="post" action="{{url_for('delete', id=recipe , user_id=email)}}">
+            <button class="button" onclick="location.href='/edit_recipes/{{recipe}}?val={{id}}'" type="submit">Edit</button>
+            <form class= "formation" method="post" action="{{url_for('delete', recipe_id=recipe,val=id , user_id=email)}}">
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="button" type="submit">Delete</button>
             </form>
@@ -89,13 +89,14 @@
         </p>
         <div class="achola">
             <div class="Nto">
-            <button class="button" onclick="location.href='/edit_recipes/{{recipe}}'" type="submit">Edit</button>
-            <form class= "formation" method="post" action="{{url_for('delete', id=recipe , user_id=email)}}">
+            <button class="button" onclick="location.href='/edit_recipes/{{recipe}}?val={{id}}'" type="submit">Edit</button>
+            <form class= "formation" method="post" action="{{url_for('delete', recipe_id=recipe,val=id , user_id=email)}}">
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="button" type="submit">Delete</button>
             </form>
             </div>
         </div>
+
     </section>
 
     {% endif %}

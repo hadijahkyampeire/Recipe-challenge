@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, flash, url_for, redirect
 from wtforms import Form, StringField, PasswordField, TextAreaField, validators
 from werkzeug.security import check_password_hash
-from data import User, userdata, recipes, Recipe
+from data import User, userdata, recipes, Recipe, Category, all_categories
 from functools import wraps
 
 app = Flask(__name__)
@@ -26,20 +26,99 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/myrecipes')
+@app.route('/create')
 @login_required
-def myrecipes():
-    """Routes to the recipes page for authorized users only"""
-    if recipes:
+def create():
+    """Routes to the category page for authorized users only"""
+    if categories:
         email = session['email']
         try:
-            return render_template('myrecipes.html', recipes_list=recipes[email], email=email)
+            return render_template('create.html', categories_list=all_categories[email], email=email)
         except KeyError:
-            msg = 'Create your first recipe'
-            return render_template('myrecipes.html', msg=msg)
+            msg = 'Create your first Recipe Category'
+            return render_template('create.html', msg=msg)
     else:
-        msg = 'Create your first recipe'
-        return render_template('myrecipes.html', msg=msg)
+        msg = 'Create your first Recipe Category'
+        return render_template('create.html', msg=msg)
+
+
+class CategoryForm(Form):
+    """Creates the category form to be rendered in the add recipe page
+    (Category page)"""
+    category_name = StringField(u'Category Name', validators=[validators.Length(min=3, max=30),
+                                validators.input_required()])
+
+
+@app.route('/Create_categories', methods=['GET', 'POST'])
+@login_required
+def create_categories():
+    """routes to the categories creation page
+    handles post request from user and adds them to the
+    database in this case a dictionary, adds them to category page"""
+    email = session['email']
+    form = CategoryForm(request.form)
+    if request.method == 'POST' and form.validate():
+        category_name = form.category_name.data
+        Category(email, category_name)
+        flash('New Category added', 'success')
+        return redirect(url_for('create'))
+    return render_template('Create_categories.html', form=form)
+
+
+@app.route('/edit_categories/<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit_categories(id):
+    email = session['email']
+    result = all_categories[email][int(id)]
+    form = CategoryForm(request.form)
+    if request.method == 'GET':
+        form.category_name.data = result['Category name']
+    if request.method == 'POST' and form.validate():
+        category_name = form.category_name.data
+        Category(email, category_name)
+        del all_categories[email][int(id)]
+        flash('Category Updated', 'success')
+        return redirect(url_for('create'))
+    return render_template('edit_categories.html', form=form)
+
+
+@app.route('/delete_category/<string:id>', methods=['POST'])
+@login_required
+def delete_category(id):
+    """Deletes a recipe when invoked"""
+    email = session['email']
+    del all_categories[email][int(id)]
+    flash('Category Deleted', 'success')
+    return redirect(url_for('create'))
+
+
+@app.route('/create/<string:id>/myrecipes')
+@login_required
+def myrecipes(id):
+    """Routes to the recipes page for authorized users only"""
+    id = int(id)
+    if id or id == 0:
+        email = session['email']
+        try:
+            all_categories[email][id]
+
+        except KeyError:
+            flash('The category does not exist', 'danger')
+            return redirect(url_for('create'))
+        if recipes:
+            email = session['email']
+            try:
+                return render_template('myrecipes.html', recipes_list=all_categories[email][id]['Category recipes'],
+                                       email=email, id=id)
+            except KeyError:
+                msg = 'Create your first recipe'
+                return render_template('myrecipes.html', msg=msg, id=id)
+        else:
+            msg = 'Create your first recipe'
+            return render_template('myrecipes.html', msg=msg, id=id)
+    else:
+        flash('The category does not exist', 'danger')
+        return redirect(url_for('create'))
 
 
 @app.route('/Categories', methods=['GET', 'POST'])
@@ -49,21 +128,24 @@ def categories():
     handles post request from user and adds them to the
     database in this case a dictionary, adds them to recipe page"""
     email = session['email']
+    category_id = request.args.get('val', '')
     form = RecipeForm(request.form)
     if request.method == 'POST' and form.validate():
         recipe_name = form.recipe_name.data
         recipe = form.recipe.data
-        Recipe(email, recipe_name, recipe)
+        Recipe(email, int(category_id), recipe_name, recipe)
         flash('New recipe added', 'success')
-        return redirect(url_for('myrecipes'))
+        return redirect(url_for('myrecipes', id=category_id))
     return render_template('Categories.html', form=form)
 
 
 @app.route('/edit_recipes/<string:id>', methods=['GET', 'POST'])
 @login_required
 def edit_recipes(id):
+    """Edit the recipes in the categories"""
     email = session['email']
-    result = recipes[email][int(id)]
+    category_id = request.args.get('val', '')
+    result = recipes[int(category_id)][int(id)]
     form = RecipeForm(request.form)
     if request.method == 'GET':
         form.recipe_name.data = result['Recipe name']
@@ -71,11 +153,24 @@ def edit_recipes(id):
     if request.method == 'POST' and form.validate():
         recipe_name = form.recipe_name.data
         recipe = form.recipe.data
-        Recipe(email, recipe_name, recipe)
-        del recipes[email][int(id)]
+        Recipe(email, int(category_id), recipe_name, recipe)
+        del recipes[int(category_id)][int(id)]
+        del all_categories[email][int(category_id)]['Category recipes'][int(id)]
         flash('Recipe Updated', 'success')
-        return redirect(url_for('myrecipes'))
+        return redirect(url_for('myrecipes', id=category_id))
     return render_template('edit_recipes.html', form=form)
+
+
+@app.route('/delete/<string:recipe_id>', methods=['POST'])
+@login_required
+def delete(recipe_id):
+    """Deletes a recipe when invoked"""
+    email = session['email']
+    category_id = request.args.get('val', '')
+    del recipes[int(category_id)][int(recipe_id)]
+    del all_categories[email][int(category_id)]['Category recipes'][int(recipe_id)]
+    flash('Recipe Deleted', 'success')
+    return redirect(url_for('myrecipes', id=category_id))
 
 
 class RegistrationForm(Form):
@@ -110,7 +205,7 @@ def login():
                 session['logged_in'] = True
                 session['user'] = userdata[email]['First Name']
                 session["email"] = email
-                return redirect('myrecipes')
+                return redirect('create')
 
             else:
                 error = 'Password does not match. Please try again'
@@ -123,6 +218,7 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     """clears the logged in user session and return him/her to the login page"""
     session.clear()
@@ -156,15 +252,6 @@ class RecipeForm(Form):
                               validators.input_required()])
     recipe = TextAreaField(u'Recipe', validators=[validators.Length(min=30),
                            validators.input_required()])
-
-
-@app.route('/delete/<string:id>', methods=['POST'])
-def delete(id):
-    """Deletes a recipe when invoked"""
-    email = session['email']
-    del recipes[email][int(id)]
-    flash('Recipe Deleted', 'success')
-    return redirect(url_for('myrecipes'))
 
 
 app.secret_key = 'Sir3n.sn@gmail.com'
