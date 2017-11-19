@@ -35,11 +35,11 @@ class TestUser(unittest.TestCase):
         self.assertIn('current_user', all_categories, msg='Category was added')
         self.assertIn('Pizza', all_categories['current_user'][meal.category_id]['Category name'], )
 
-    def test_recipe_is_created(self):
+    def test_recipe_is_created_in_category(self):
         """Tests if user recipe is added to dictionery"""
-        meal = Recipe('current_user', 'Pizza', 'Blah blah blah 2 spoons, and voila cooked')
-        self.assertIn('current_user', recipes, msg='recipe was added')
-        self.assertIn('Pizza', recipes['current_user'][meal.recipe_id]['Recipe name'],)
+        Category('current_user', 'Pizza')
+        meal = Recipe('current_user', 0, 'Pizza', 'Blah blah blah 2 spoons, and voila cooked')
+        self.assertIn('Pizza', recipes[0][meal.recipe_id]['Recipe name'],)
 
 
 class MyViewTestCase(TestCase):
