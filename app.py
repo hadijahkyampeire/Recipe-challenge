@@ -109,13 +109,13 @@ def myrecipes(id):
             email = session['email']
             try:
                 return render_template('myrecipes.html', recipes_list=all_categories[email][id]['Category recipes'],
-                                       email=email, id=id)
+                                       email=email, id=id, category_name=all_categories[email][id]['Category name'])
             except KeyError:
                 msg = 'Create your first recipe'
-                return render_template('myrecipes.html', msg=msg, id=id)
+                return render_template('myrecipes.html', msg=msg, id=id, category_name=all_categories[email][id]['Category name'])
         else:
             msg = 'Create your first recipe'
-            return render_template('myrecipes.html', msg=msg, id=id)
+            return render_template('myrecipes.html', msg=msg, id=id, category_name=all_categories[email][id]['Category name'])
     else:
         flash('The category does not exist', 'danger')
         return redirect(url_for('create'))
